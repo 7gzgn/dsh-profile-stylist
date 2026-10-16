@@ -1,6 +1,6 @@
 {
   "name": "dsh-profile-stylist",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Say what kind of profile you want; the agent writes it and puts it up. Generates nickname/bio/taglines with the host model, picks or composes an avatar from local assets, then fills the profile page and uploads the picture - dry-run by default.",
   "type": "module",
   "main": "lib/index.js",
