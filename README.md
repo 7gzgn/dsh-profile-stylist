@@ -33,20 +33,28 @@ profile_apply   fields='{"name":"…","bio":"…"}' [host=github] [avatarPath=�
 
 ## 头像从哪来
 
-本机**没有图像生成服务**，所以头像只有三条来源：
+本机**没有图像生成服务**，所以头像只有四条来源：
 
 | 来源 | 怎么用 |
 | --- | --- |
 | **素材库** | 往 `%USERPROFILE%\.dsh\dsh-profile-stylist\assets\avatars\` 丢 png/jpg，然后 `avatarFromAssets:"文件名"` |
 | **本地图片** | `avatarPath:"D:\\pics\\me.png"`（≤12MB，插件会按 512×512 规格化后再交） |
-| **自己画** | 先 `profile_author` 拿文案，需要"把名字画进图里"时用页面内 canvas 合成（零外部依赖） |
+| **当场合成**（v0.2 新增） | `avatarTemplate:"initials" \\| "gradient" \\| "tagline"`：在页面里用 canvas 画一张 460×460 PNG，零外部依赖。`initials` 纯色底+名字首字、`gradient` 渐变底+首字、`tagline` 深色底+名字+标语（配 `avatarTagline:"一句话"`）。配色由名字稳定决定（同一名字永远同一个颜色） |
+| 都不给 | 不换头像 |
+
+```js
+profile_apply fields='{"name":"七个知更鸟","bio":"…"}' avatarTemplate="tagline" avatarTagline="写插件的那个人" confirm=true
+```
 
 ## 支持的站点
 
 | 站点 | 状态 | 备注 |
 | --- | --- | --- |
 | **GitHub** | ✅ 选择器**真机验证过** | `#user_display_name` / `#user_profile_bio` / `#avatar_upload` + 「Set new profile picture」 |
-| Gitee | ⚠️ **未实测** | 选择器是按常见命名写的，真机上可能要按现场改；回执里会如实标"未验证" |
+| **Gitee** | ✅ 选择器**真机验证过**（2026-10-17，gitee.com/profile） | `#user_name` / `#user_bio` / `#user_company` / `#user_blog`，保存按钮 `button[name=commit]`（「更新」），头像 `#avatar-input` + `#confirm-avatar`（「确定」） |
+
+**Gitee 的所在地写不了**：它是 `#user_province` + `#user_city` 两级下拉，不在字段表里 ——
+传 `location` 会出现在 `unsupported`（明确告诉你不支持），不会静默失败。
 
 不认识的站点**直接拒绝**，不猜选择器。
 
