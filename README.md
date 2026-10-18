@@ -48,10 +48,23 @@ profile_apply fields='{"name":"七个知更鸟","bio":"…"}' avatarTemplate="ta
 
 ## 支持的站点
 
+**一句话：只适合「git 系」的资料页 —— 目前就是 GitHub 和 Gitee，两家都是真机验证过的。**
+其他的（微博 / 知乎 / B站 / 小红书 / 掘金…）**没有适配**，传了会直接拒绝，不猜选择器。
+
 | 站点 | 状态 | 备注 |
 | --- | --- | --- |
 | **GitHub** | ✅ 选择器**真机验证过** | `#user_display_name` / `#user_profile_bio` / `#avatar_upload` + 「Set new profile picture」 |
 | **Gitee** | ✅ 选择器**真机验证过**（2026-10-17，gitee.com/profile） | `#user_name` / `#user_bio` / `#user_company` / `#user_blog`，保存按钮 `button[name=commit]`（「更新」），头像 `#avatar-input` + `#confirm-avatar`（「确定」） |
+
+**逐字段的支持差异**（同样是 git 站，字段并不完全一样）：
+
+| 字段 | GitHub | Gitee |
+| --- | --- | --- |
+| 昵称 / 显示名 | ✅ | ✅ |
+| 一句话简介 | ✅ | ✅ |
+| 公司 / 组织 | ✅ | ✅ |
+| 链接（主页） | ✅ | ✅ |
+| **所在地** | ✅ | ❌ 两级下拉（省+市），明确不支持 |
 
 **Gitee 的所在地写不了**：它是 `#user_province` + `#user_city` 两级下拉，不在字段表里 ——
 传 `location` 会出现在 `unsupported`（明确告诉你不支持），不会静默失败。
