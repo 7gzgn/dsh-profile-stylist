@@ -1,7 +1,7 @@
 {
   "name": "dsh-profile-stylist",
   "version": "0.2.2",
-  "description": "Say what kind of profile you want; the agent writes it and puts it up. Generates nickname/bio/taglines with the host model, picks a local asset OR composes an avatar in-page with canvas (initials / gradient / tagline templates), then fills the profile page and uploads the picture - dry-run by default. GitHub and Gitee selectors are both verified on the live sites.",
+  "description": "给 DSH 的个人资料做装扮：头像、称号、配色，改完立刻能看到。 Dress up the DSH profile: avatar, title and colors, visible the moment you save.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -56,7 +56,8 @@
     "compatibility": {
       "dshReleases": {
         "0.2.0-rc.2": "compatible",
-        "0.2.1-rc.2": "compatible"
+        "0.2.1-rc.2": "compatible",
+        "0.2.2-rc.1": "compatible"
       }
     },
     "bundle": {
